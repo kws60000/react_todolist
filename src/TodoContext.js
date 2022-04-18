@@ -9,6 +9,7 @@ const initialTodos = [
   {
     id: 2,
     text: '컴포넌트 스타일링하기',
+    done: true
   },
   {
     id: 3,
@@ -57,13 +58,25 @@ export function TodoProvider({children}) {
 }
 
 export function useTodoState() {
-  return useContext(TodoStateContext)
+  const context = useContext(TodoStateContext)
+  if(!context) {
+    throw new Error('Cannot find TodoProvider')
+  }
+  return context
 }
 
 export function useTodoDispatch() {
-  return useContext(TodoDispatchContext)
+  const context = useContext(TodoDispatchContext)
+  if(!context) {
+    throw new Error('Cannot find TodoProvider')
+  }
+  return context
 }
 
 export function useTodoNextId() {
-  return useContext(TodoNextIdContext)
+  const context = useContext(TodoNextIdContext)
+  if(!context) {
+    throw new Error('Cannot find TodoProvider')
+  }
+  return context
 }
